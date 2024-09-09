@@ -1,11 +1,11 @@
 ---
 - name: Create Nerd font install directory
   ansible.builtin.file:
-    path: "{{ font_dir }}/Nerd{{ variation }}"
+    path: "{{ font_dir }}/Nerd_{{ variation }}"
     state: directory
     mode: "0755"
 - name: Install Nerd font({{ variation }})
   ansible.builtin.unarchive:
     src: https://github.com/{{ font_nerd_repo }}/releases/download/{{ font_nerd_version }}/{{ variation }}.tar.xz
-    dest: "{{ font_dir }}/Nerd{{ variation }}"
+    dest: "{{ font_dir }}/Nerd_{{ variation }}"
     remote_src: true
