@@ -14,3 +14,118 @@
     - name: Assert fnt package
       ansible.builtin.assert:
         that: ansible_facts.packages['fnt']
+    ## Test custom install task
+    - name: Test HackGen
+      block:
+        - name: Check font file
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/HackGen/HackGen-Regular.ttf
+          register: font_file_result
+        - name: Assert font file
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test UDEV Gothic
+      block:
+        - name: Check font file
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/UDEVGothic/UDEVGothic-Regular.ttf
+          register: font_file_result
+        - name: Assert font file
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test PlemolJP
+      block:
+        - name: Check font file
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/PlemolJP/PlemolJP-Regular.ttf
+          register: font_file_result
+        - name: Assert font file
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test MoraleJuiseerspace
+      block:
+        - name: Check font file
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Juisee/Juisee-Regular.ttf
+          register: font_file_result
+        - name: Assert font file
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test Firge
+      block:
+        - name: Check font file
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Firge/Firge-Regular.ttf
+          register: font_file_result
+        - name: Assert font file
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test Moralerspace
+      block:
+        - name: Check font file(Argon)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Moralerspace/MoralerspaceArgon-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Argon)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Krypton)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Moralerspace/MoralerspaceKrypton-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Krypton)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Neon)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Moralerspace/MoralerspaceNeon-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Neon)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Radon)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Moralerspace/MoralerspaceRadon-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Radon)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Xenon)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Moralerspace/MoralerspaceXenon-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Xenon)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test Bizin Gothic
+      block:
+        - name: Check font file(Nomal)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/BizinGothic/BizinGothic-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Nomal)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Discord)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/BizinGothicDiscord/BizinGothicDiscord-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(Discord)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test Nerd
+      block:
+        - name: Check font file(SymbolsOnly)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Nerd_NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(SymbolsOnly)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(SymbolsOnly mono)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/Nerd_NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(SymbolsOnly mono)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
