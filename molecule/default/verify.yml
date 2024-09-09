@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    ## テストの前処理
+    - name: Gather facts
+      block:
+        - name: Gather package fact
+          ansible.builtin.package_facts:
+            manager: auto
+    ## 各パッケージのテスト
+    - name: Assert fnt package
+      ansible.builtin.assert:
+        that: ansible_facts.packages['fnt']

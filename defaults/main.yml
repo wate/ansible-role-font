@@ -1,0 +1,33 @@
+---
+## -----------------
+## インストールするパッケージ
+## -----------------
+font_install_fonts:
+  - fonts-ipafont
+  - fonts-ipaexfont
+  - fonts-morisawa-bizud-gothic
+  - fonts-morisawa-bizud-mincho
+  ## custom font
+  - HackGen
+  - UDEVGothic
+  - PlemolJP
+  - Moralerspace
+  - Juisee
+  - Firge
+  - BizinGothic
+  - Nerd
+
+font_hackgen_version: latest
+font_plemoljp_version: latest
+font_udevgothic_version: latest
+font_moralerspace_version: latest
+font_firge_version: latest
+font_juisee_version: latest
+font_bizingothic_version: latest
+font_nerd_version: latest
+
+## -----------------
+## インストールするNerd fontのバリエーション
+## -----------------
+font_nerd_variations:
+  - NerdFontsSymbolsOnly

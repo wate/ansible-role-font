@@ -1,0 +1,31 @@
+# code: language=ansible
+---
+- name: Install dependency packages
+  ansible.builtin.apt:
+    name:
+      - unzip
+      - tar
+      - bzip2
+      - xz-utils
+- name: Install fnt package
+  ansible.builtin.apt:
+    name: fnt
+- name: Find custom install tasks
+  ansible.builtin.set_fact:
+    custom_install_tasks: "{{ lookup('fileglob', 'tasks/font/*.yml', wantlist=True) | map('basename') | map('regex_replace', '\\.yml$', '') }}"
+- name: Install font packages(apt)
+  ansible.builtin.apt:
+    name: "{{ font_name }}"
+  when: font_name not in custom_install_tasks
+  loop: "{{ font_install_fonts }}"
+  loop_control:
+    loop_var: font_name
+    label: "{{ font_name }}"
+- name: Install font packages(custom install)
+  ansible.builtin.include_tasks:
+    file: font/{{ font_name }}.yml
+  when: font_name in custom_install_tasks
+  loop: "{{ font_install_fonts }}"
+  loop_control:
+    loop_var: font_name
+    label: "{{ font_name }}"
