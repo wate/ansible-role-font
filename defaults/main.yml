@@ -17,8 +17,8 @@ font_install_fonts:
   # - Firge
   # - Juisee
   # - Explex
-  - FortAwesome
   - NerdFonts
+  # - FontAwesome
 
 font_hackgen_version: latest
 font_plemoljp_version: latest
