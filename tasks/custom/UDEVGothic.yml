@@ -12,7 +12,7 @@
         font_udevgothic_version: "{{ latest_version }}"
 - name: Set asset file variable
   ansible.builtin.set_fact:
-    asset_url: https://github.com/{{ font_udevgothic_repo }}/releases/download/{{ font_udevgothic_version }}/UDEVGothic_{{ font_udevgothic_version }}.zip
+    asset_file: UDEVGothic_{{ font_udevgothic_version }}.zip
 - name: Create UDEV Gothic font install directory
   ansible.builtin.file:
     path: "{{ font_dir }}/UDEVGothic"
@@ -20,7 +20,7 @@
     mode: "0755"
 - name: Install UDEV Gothic font
   ansible.builtin.unarchive:
-    src: "{{ asset_url }}"
+    src: https://github.com/{{ font_udevgothic_repo }}/releases/download/{{ font_udevgothic_version }}/{{ asset_file }}
     dest: "{{ font_dir }}/UDEVGothic"
     extra_opts:
       - -j
