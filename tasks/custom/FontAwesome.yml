@@ -1,0 +1,31 @@
+- name: Set Install version variable
+  when: font_font_awesome_version == 'latest'
+  block:
+    - name: Get latest version
+      ansible.builtin.include_tasks:
+        file: tasks/common/get_latest_version.yml
+      vars:
+        github_repo: "{{ font_font_awesome_repo }}"
+    - name: Set package version variable
+      ansible.builtin.set_fact:
+        font_font_awesome_version: "{{ latest_version }}"
+- name: Set asset file variable
+  ansible.builtin.set_fact:
+    asset_file: fontawesome-free-{{ font_font_awesome_version }}-desktop.zip
+    font_awesome_major_version: "{{ (font_font_awesome_version | split('.'))[0] }}"
+- name: Create Font Awesome font install directory
+  ansible.builtin.file:
+    path: "{{ font_dir }}/FontAwesome"
+    state: directory
+    mode: "0755"
+- name: Install Font Awesome font
+  ansible.builtin.unarchive:
+    src: https://github.com/{{ font_font_awesome_repo }}/releases/download/{{ font_font_awesome_version }}/{{ asset_file }}
+    dest: "{{ font_dir }}/FontAwesome"
+    include:
+      - fontawesome-free-{{ font_font_awesome_version }}-desktop/otfs/Font Awesome {{ font_awesome_major_version }} Brands-Regular-400.otf
+      - fontawesome-free-{{ font_font_awesome_version }}-desktop/otfs/Font Awesome {{ font_awesome_major_version }} Free-Regular-400.otf
+      - fontawesome-free-{{ font_font_awesome_version }}-desktop/otfs/Font Awesome {{ font_awesome_major_version }} Free-Solid-900.otf
+    extra_opts:
+      - -j
+    remote_src: true

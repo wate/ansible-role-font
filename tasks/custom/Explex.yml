@@ -12,15 +12,15 @@
         font_explex_version: "{{ latest_version }}"
 - name: Set asset file variable
   ansible.builtin.set_fact:
-    asset_url: https://github.com/{{ font_explex_repo }}/releases/download/{{ font_explex_version }}/Explex_{{ font_explex_version }}.zip
-- name: Create HackGen font install directory
+    asset_file: Explex_{{ font_explex_version }}.zip
+- name: Create Explex font install directory
   ansible.builtin.file:
     path: "{{ font_dir }}/Explex"
     state: directory
     mode: "0755"
 - name: Install Explex font
   ansible.builtin.unarchive:
-    src: "{{ asset_url }}"
+    src: https://github.com/{{ font_explex_repo }}/releases/download/{{ font_explex_version }}/{{ asset_file }}
     dest: "{{ font_dir }}/Explex"
     extra_opts:
       - -j

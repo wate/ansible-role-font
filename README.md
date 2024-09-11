@@ -35,11 +35,13 @@ Role Variables
 
 ### `font_explex_version`
 
-### `font_nerd_version`
+### `font_nerd_fonts_version`
 
-### `font_nerd_variations`
+### `font_font_awesome_version`
 
-インストールするNerd fontのバリエーション
+### `font_nerd_fonts_variations`
+
+インストールするNerd fontsのバリエーション
 
 Example Playbook
 --------------
