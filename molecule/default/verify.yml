@@ -13,7 +13,14 @@
     ## 各パッケージのテスト
     - name: Assert fnt package
       ansible.builtin.assert:
-        that: ansible_facts.packages['fnt']
+        that:
+    - name: Assert font packages
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.packages['fonts-ipafont']
+          - ansible_facts.packages['fonts-ipaexfont']
+          - ansible_facts.packages['fonts-morisawa-bizud-gothic']
+          - ansible_facts.packages['fonts-morisawa-bizud-mincho']
     ## Test custom install task
     - name: Test HackGen
       block:
@@ -113,7 +120,7 @@
         - name: Assert font file(Discord)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
-    - name: Test Nerd
+    - name: Test Nerd fonts
       block:
         - name: Check font file(SymbolsOnly)
           ansible.builtin.stat:
@@ -141,5 +148,28 @@
             path: /usr/local/share/fonts/NerdFonts/0xProtoNerdFontMono-Regular.ttf
           register: font_file_result
         - name: Assert font file(0xProto mono)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+    - name: Test Font Awesome
+      block:
+        - name: Check font file(Brands-Regular)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Brands-Regular-400.otf
+          register: font_file_result
+        - name: Assert font file(Brands-Regular)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Free-Regular)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Free-Regular-400.otf
+          register: font_file_result
+        - name: Assert font file(Free-Regular)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(Free-Solid)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Free-Solid-900.otf
+          register: font_file_result
+        - name: Assert font file(Free-Solid)
           ansible.builtin.assert:
             that: font_file_result.stat.exists

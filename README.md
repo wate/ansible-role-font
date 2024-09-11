@@ -37,6 +37,8 @@ Role Variables
 
 ### `font_nerd_fonts_version`
 
+### `font_font_awesome_version`
+
 ### `font_nerd_fonts_variations`
 
 インストールするNerd fontsのバリエーション

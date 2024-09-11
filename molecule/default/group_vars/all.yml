@@ -14,6 +14,7 @@ font_install_fonts:
   - Juisee
   - Explex
   - NerdFonts
+  - FontAwesome
 
 font_nerd_fonts_variations:
   - NerdFontsSymbolsOnly
