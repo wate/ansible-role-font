@@ -1,18 +1,28 @@
 - name: Set Install version variable
-  when: font_nerd_version == 'latest'
+  when: font_nerd_fonts_version == 'latest'
   block:
     - name: Get latest version
       ansible.builtin.include_tasks:
         file: tasks/common/get_latest_version.yml
       vars:
-        github_repo: "{{ font_nerd_repo }}"
+        github_repo: "{{ font_nerd_fonts_repo }}"
     - name: Set package version variable
       ansible.builtin.set_fact:
-        font_nerd_version: "{{ latest_version }}"
-- name: Include Nerd font install task
-  ansible.builtin.include_tasks:
-    file: tasks/custom/NerdFonts/install.yml
-  loop: "{{ font_nerd_variations }}"
+        font_nerd_fonts_version: "{{ latest_version }}"
+- name: Create Nerd fonts install directory
+  ansible.builtin.file:
+    path: "{{ font_dir }}/NerdFonts"
+    state: directory
+    mode: "0755"
+- name: Install Nerd font
+  ansible.builtin.unarchive:
+    src: https://github.com/{{ font_nerd_fonts_repo }}/releases/download/{{ font_nerd_fonts_version }}/{{ variation }}.tar.xz
+    dest: "{{ font_dir }}/NerdFonts"
+    exclude:
+      - README.md
+      - LICENSE
+    remote_src: true
+  loop: "{{ font_nerd_fonts_variations }}"
   loop_control:
     loop_var: variation
     label: "{{ variation }}"

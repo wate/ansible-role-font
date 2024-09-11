@@ -1,3 +1,20 @@
 ---
-font_nerd_variations:
+font_install_fonts:
+  - fonts-ipafont
+  - fonts-ipaexfont
+  - fonts-morisawa-bizud-gothic
+  - fonts-morisawa-bizud-mincho
+  ## custom install font
+  - HackGen
+  - UDEVGothic
+  - PlemolJP
+  - Moralerspace
+  - BizinGothic
+  - Firge
+  - Juisee
+  - Explex
+  - NerdFonts
+
+font_nerd_fonts_variations:
   - NerdFontsSymbolsOnly
+  - 0xProto

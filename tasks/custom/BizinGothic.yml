@@ -12,12 +12,9 @@
         font_bizingothic_version: "{{ latest_version }}"
 - name: Create BizinGothic font install directory
   ansible.builtin.file:
-    path: "{{ font_dir }}/{{ item }}"
+    path: "{{ font_dir }}/BizinGothic"
     state: directory
     mode: "0755"
-  loop:
-    - BizinGothic
-    - BizinGothicDiscord
 - name: Install BizinGothic font
   ansible.builtin.unarchive:
     src: https://github.com/{{ font_bizingothic_repo }}/releases/download/{{ font_bizingothic_version }}/BizinGothic_{{ font_bizingothic_version }}.zip
@@ -28,7 +25,7 @@
 - name: Install BizinGothic Discord font
   ansible.builtin.unarchive:
     src: https://github.com/{{ font_bizingothic_repo }}/releases/download/{{ font_bizingothic_version }}/BizinGothicDiscord_{{ font_bizingothic_version }}.zip
-    dest: "{{ font_dir }}/BizinGothicDiscord"
+    dest: "{{ font_dir }}/BizinGothic"
     extra_opts:
       - -j
     remote_src: true

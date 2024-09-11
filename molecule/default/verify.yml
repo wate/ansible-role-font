@@ -108,7 +108,7 @@
             that: font_file_result.stat.exists
         - name: Check font file(Discord)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/BizinGothicDiscord/BizinGothicDiscord-Regular.ttf
+            path: /usr/local/share/fonts/BizinGothic/BizinGothicDiscord-Regular.ttf
           register: font_file_result
         - name: Assert font file(Discord)
           ansible.builtin.assert:
@@ -117,15 +117,29 @@
       block:
         - name: Check font file(SymbolsOnly)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/Nerd_NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf
+            path: /usr/local/share/fonts/NerdFonts/SymbolsNerdFont-Regular.ttf
           register: font_file_result
         - name: Assert font file(SymbolsOnly)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
         - name: Check font file(SymbolsOnly mono)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/Nerd_NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf
+            path: /usr/local/share/fonts/NerdFonts/SymbolsNerdFontMono-Regular.ttf
           register: font_file_result
         - name: Assert font file(SymbolsOnly mono)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(0xProto)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/NerdFonts/0xProtoNerdFont-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(0xProto)
+          ansible.builtin.assert:
+            that: font_file_result.stat.exists
+        - name: Check font file(0xProto mono)
+          ansible.builtin.stat:
+            path: /usr/local/share/fonts/NerdFonts/0xProtoNerdFontMono-Regular.ttf
+          register: font_file_result
+        - name: Assert font file(0xProto mono)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
