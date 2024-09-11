@@ -15,6 +15,7 @@ font_install_fonts:
   - Firge
   - Moralerspace
   - BizinGothic
+  - Explex
   - Nerd
 
 font_hackgen_version: latest
@@ -24,6 +25,7 @@ font_moralerspace_version: latest
 font_firge_version: latest
 font_juisee_version: latest
 font_bizingothic_version: latest
+font_explex_version: latest
 font_nerd_version: latest
 
 ## -----------------

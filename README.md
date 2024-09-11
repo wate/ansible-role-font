@@ -33,6 +33,8 @@ Role Variables
 
 ### `font_bizingothic_version`
 
+### `font_explex_version`
+
 ### `font_nerd_version`
 
 ### `font_nerd_variations`
