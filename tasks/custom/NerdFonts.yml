@@ -11,7 +11,7 @@
         font_nerd_version: "{{ latest_version }}"
 - name: Include Nerd font install task
   ansible.builtin.include_tasks:
-    file: tasks/font/Nerd/install.yml
+    file: tasks/custom/NerdFonts/install.yml
   loop: "{{ font_nerd_variations }}"
   loop_control:
     loop_var: variation

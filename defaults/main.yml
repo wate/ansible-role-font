@@ -16,7 +16,7 @@ font_install_fonts:
   - Moralerspace
   - BizinGothic
   - Explex
-  - Nerd
+  - NerdFonts
 
 font_hackgen_version: latest
 font_plemoljp_version: latest
