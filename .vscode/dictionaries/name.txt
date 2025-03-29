@@ -3,8 +3,12 @@ explex
 firge
 fontawesome
 hackgen
+ipaexfont
+ipafont
 juisee
+mincho
 moralerspace
+morisawa
 noto
 plemoljp
 ryanoasis
