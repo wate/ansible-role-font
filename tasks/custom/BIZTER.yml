@@ -1,29 +1,28 @@
 ---
-- name: Set BizinGothic install version variable
-  when: font_bizingothic_version == 'latest'
+- name: Set BIZTER install version variable
+  when: font_bizter_version == 'latest'
   block:
     - name: Get latest version
       ansible.builtin.include_tasks:
         file: tasks/common/get_latest_version.yml
       vars:
-        github_repo: "{{ font_bizingothic_repo }}"
-        target_name: BizinGothic
+        github_repo: "{{ font_bizter_repo }}"
+        target_name: BIZTER
     - name: Set package version variable
       ansible.builtin.set_fact:
-        font_bizingothic_version: "{{ latest_version }}"
+        font_bizter_version: "{{ latest_version }}"
 - name: Set asset file variable
   ansible.builtin.set_fact:
-    normal_asset_file: BizinGothic_{{ font_bizingothic_version }}.zip
-    discord_asset_file: BizinGothicDiscord_{{ font_bizingothic_version }}.zip
-- name: Create BizinGothic font install directory
+    asset_file: BIZTER_{{ font_bizter_version }}.zip
+- name: Create BIZTER font install directory
   ansible.builtin.file:
-    path: "{{ font_dir }}/BizinGothic"
+    path: "{{ font_dir }}/BIZTER"
     state: directory
     mode: "0755"
 - name: Install BizinGothic font
   ansible.builtin.unarchive:
-    src: https://github.com/{{ font_bizingothic_repo }}/releases/download/{{ font_bizingothic_version }}/{{ normal_asset_file }}
-    dest: "{{ font_dir }}/BizinGothic"
+    src: https://github.com/{{ font_bizter_version }}/releases/download/{{ font_bizter_version }}/{{ asset_file }}
+    dest: "{{ font_dir }}/BIZTER"
     extra_opts:
       - -j
     remote_src: true

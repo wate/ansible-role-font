@@ -10,12 +10,13 @@ font_install_fonts:
   - PlemolJP
   - Moralerspace
   - BizinGothic
+  # - BIZTER
   - Firge
   - Juisee
   - Explex
   - NerdFonts
   - FontAwesome
 
-font_nerd_fonts_variations:
+font_nerdfonts_variations:
   - NerdFontsSymbolsOnly
   - 0xProto

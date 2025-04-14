@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: font
   author: yoshiaki tanaka
-  description: install font
+  description: Install font
   license: Apache
   min_ansible_version: "2.18"
   platforms:

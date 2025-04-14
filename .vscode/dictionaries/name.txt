@@ -1,4 +1,6 @@
 bizingothic
+bizter
+BIZTER
 explex
 firge
 fontawesome
@@ -9,6 +11,7 @@ juisee
 mincho
 moralerspace
 morisawa
+nerdfonts
 noto
 plemoljp
 ryanoasis
