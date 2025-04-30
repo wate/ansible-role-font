@@ -1,7 +1,7 @@
 font
 =================
 
-install font
+Install font
 
 OS Platform
 -----------------
@@ -35,13 +35,15 @@ Role Variables
 
 #### `font_bizingothic_version`
 
+#### `font_bizter_version`
+
 #### `font_explex_version`
 
-#### `font_nerd_fonts_version`
+#### `font_nerdfonts_version`
 
-#### `font_font_awesome_version`
+#### `font_fontawesome_version`
 
-#### `font_nerd_fonts_variations`
+#### `font_nerdfonts_variations`
 
 インストールするNerd fontsのバリエーション
 
@@ -63,15 +65,15 @@ Role Variables
 
 #### `font_juisee_repo`
 
-#### `font_notocjk_repo`
-
 #### `font_bizingothic_repo`
+
+#### `font_bizter_repo`
 
 #### `font_explex_repo`
 
-#### `font_nerd_fonts_repo`
+#### `font_nerdfonts_repo`
 
-#### `font_font_awesome_repo`
+#### `font_fontawesome_repo`
 
 Example Playbook
 --------------

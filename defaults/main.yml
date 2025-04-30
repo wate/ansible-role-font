@@ -14,6 +14,7 @@ font_install_fonts:
   - PlemolJP
   - Moralerspace
   - BizinGothic
+  # - BIZTER
   # - Firge
   # - Juisee
   # - Explex
@@ -27,12 +28,13 @@ font_moralerspace_version: latest
 font_firge_version: latest
 font_juisee_version: latest
 font_bizingothic_version: latest
+font_bizter_version: latest
 font_explex_version: latest
-font_nerd_fonts_version: latest
-font_font_awesome_version: latest
+font_nerdfonts_version: latest
+font_fontawesome_version: latest
 
 ## -----------------
 ## インストールするNerd fontsのバリエーション
 ## -----------------
-font_nerd_fonts_variations:
+font_nerdfonts_variations:
   - NerdFontsSymbolsOnly

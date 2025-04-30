@@ -1,5 +1,5 @@
 ---
-- name: Set Install version variable
+- name: Set Moralerspace install version variable
   when: font_moralerspace_version == 'latest'
   block:
     - name: Get latest version
@@ -7,6 +7,7 @@
         file: tasks/common/get_latest_version.yml
       vars:
         github_repo: "{{ font_moralerspace_repo }}"
+        target_name: Moralerspace
     - name: Set package version variable
       ansible.builtin.set_fact:
         font_moralerspace_version: "{{ latest_version }}"

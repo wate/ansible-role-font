@@ -1,5 +1,5 @@
 ---
-- name: Set Install version variable
+- name: Set HackGen install version variable
   when: font_hackgen_version == 'latest'
   block:
     - name: Get latest version
@@ -7,6 +7,7 @@
         file: tasks/common/get_latest_version.yml
       vars:
         github_repo: "{{ font_hackgen_repo }}"
+        target_name: HackGen
     - name: Set package version variable
       ansible.builtin.set_fact:
         font_hackgen_version: "{{ latest_version }}"
