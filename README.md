@@ -39,11 +39,11 @@ Role Variables
 
 #### `font_explex_version`
 
-#### `font_nerd_fonts_version`
+#### `font_nerdfonts_version`
 
 #### `font_fontawesome_version`
 
-#### `font_nerd_fonts_variations`
+#### `font_nerdfonts_variations`
 
 インストールするNerd fontsのバリエーション
 
@@ -71,7 +71,7 @@ Role Variables
 
 #### `font_explex_repo`
 
-#### `font_nerd_fonts_repo`
+#### `font_nerdfonts_repo`
 
 #### `font_fontawesome_repo`
 
