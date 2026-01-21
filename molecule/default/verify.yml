@@ -3,6 +3,8 @@
   hosts: all
   gather_facts: true
   become: true
+  vars:
+    font_awesome_version: 7
   tasks:
     ## テストの前処理
     - name: Gather facts
@@ -14,13 +16,14 @@
     - name: Assert fnt package
       ansible.builtin.assert:
         that:
+          - ansible_facts.packages['fnt'] is defined
     - name: Assert font packages
       ansible.builtin.assert:
         that:
-          - ansible_facts.packages['fonts-ipafont']
-          - ansible_facts.packages['fonts-ipaexfont']
-          - ansible_facts.packages['fonts-morisawa-bizud-gothic']
-          - ansible_facts.packages['fonts-morisawa-bizud-mincho']
+          - ansible_facts.packages['fonts-ipafont'] is defined
+          - ansible_facts.packages['fonts-ipaexfont'] is defined
+          - ansible_facts.packages['fonts-morisawa-bizud-gothic'] is defined
+          - ansible_facts.packages['fonts-morisawa-bizud-mincho'] is defined
     ## Test custom install task
     - name: Test HackGen
       block:
@@ -163,21 +166,21 @@
       block:
         - name: Check font file(Brands-Regular)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Brands-Regular-400.otf
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome {{ font_awesome_version }} Brands-Regular-400.otf
           register: font_file_result
         - name: Assert font file(Brands-Regular)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
         - name: Check font file(Free-Regular)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Free-Regular-400.otf
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome {{ font_awesome_version }} Free-Regular-400.otf
           register: font_file_result
         - name: Assert font file(Free-Regular)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
         - name: Check font file(Free-Solid)
           ansible.builtin.stat:
-            path: /usr/local/share/fonts/FontAwesome/Font Awesome 6 Free-Solid-900.otf
+            path: /usr/local/share/fonts/FontAwesome/Font Awesome {{ font_awesome_version }} Free-Solid-900.otf
           register: font_file_result
         - name: Assert font file(Free-Solid)
           ansible.builtin.assert:
