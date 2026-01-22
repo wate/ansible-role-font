@@ -3,12 +3,19 @@
   hosts: all
   gather_facts: true
   become: true
-  vars:
-    font_awesome_version: 7
   tasks:
     ## テストの前処理
     - name: Gather facts
       block:
+        - name: Get Font Awesome version from API
+          ansible.builtin.uri:
+            url: https://endoflife.date/api/v1/products/font-awesome
+            method: GET
+          register: font_awesome_api_result
+          changed_when: false
+        - name: Set Font Awesome version from API
+          ansible.builtin.set_fact:
+            font_awesome_version: "{{ font_awesome_api_result.json.result.releases[0].name }}"
         - name: Gather package fact
           ansible.builtin.package_facts:
             manager: auto
@@ -17,6 +24,8 @@
       ansible.builtin.assert:
         that:
           - ansible_facts.packages['fnt'] is defined
+        fail_msg: "fnt package is not installed"
+        success_msg: "fnt package is installed"
     - name: Assert font packages
       ansible.builtin.assert:
         that:
@@ -24,6 +33,8 @@
           - ansible_facts.packages['fonts-ipaexfont'] is defined
           - ansible_facts.packages['fonts-morisawa-bizud-gothic'] is defined
           - ansible_facts.packages['fonts-morisawa-bizud-mincho'] is defined
+        fail_msg: "Some required font packages are not installed"
+        success_msg: "All required font packages are installed"
     ## Test custom install task
     - name: Test HackGen
       block:
@@ -34,6 +45,8 @@
         - name: Assert HackGen font file
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "HackGen font file does not exist"
+            success_msg: "HackGen font file exists"
     - name: Test UDEVGothic
       block:
         - name: Check UDEVGothic font file
@@ -43,6 +56,8 @@
         - name: Assert UDEVGothic font file
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "UDEVGothic font file does not exist"
+            success_msg: "UDEVGothic font file exists"
     - name: Test PlemolJP
       block:
         - name: Check PlemolJP font file
@@ -52,6 +67,8 @@
         - name: Assert PlemolJP font file
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "PlemolJP font file does not exist"
+            success_msg: "PlemolJP font file exists"
     - name: Test Juisee
       block:
         - name: Check Juisee font file
@@ -61,6 +78,8 @@
         - name: Assert Juisee font file
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Juisee font file does not exist"
+            success_msg: "Juisee font file exists"
     - name: Test Firge
       block:
         - name: Check Firge font file
@@ -70,6 +89,8 @@
         - name: Assert Firge font file
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Firge font file does not exist"
+            success_msg: "Firge font file exists"
     - name: Test Moralerspace
       block:
         - name: Check Moralerspace font file(Argon)
@@ -79,6 +100,8 @@
         - name: Assert Moralerspace font file(Argon)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Moralerspace(Argon) font file does not exist"
+            success_msg: "Moralerspace(Argon) font file exists"
         - name: Check Moralerspace font file(Krypton)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/Moralerspace/MoralerspaceKrypton-Regular.ttf
@@ -86,6 +109,8 @@
         - name: Assert Moralerspace font file(Krypton)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Moralerspace(Krypton) font file does not exist"
+            success_msg: "Moralerspace(Krypton) font file exists"
         - name: Check Moralerspace font file(Neon)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/Moralerspace/MoralerspaceNeon-Regular.ttf
@@ -93,6 +118,8 @@
         - name: Assert Moralerspace font file(Neon)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Moralerspace(Neon) font file does not exist"
+            success_msg: "Moralerspace(Neon) font file exists"
         - name: Check Moralerspace font file(Radon)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/Moralerspace/MoralerspaceRadon-Regular.ttf
@@ -100,6 +127,8 @@
         - name: Assert Moralerspace font file(Radon)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Moralerspace(Radon) font file does not exist"
+            success_msg: "Moralerspace(Radon) font file exists"
         - name: Check Moralerspace font file(Xenon)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/Moralerspace/MoralerspaceXenon-Regular.ttf
@@ -107,6 +136,8 @@
         - name: Assert Moralerspace font file(Xenon)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Moralerspace(Xenon) font file does not exist"
+            success_msg: "Moralerspace(Xenon) font file exists"
     - name: Test Bizin Gothic
       block:
         - name: Check BizinGothic font file(Normal)
@@ -116,6 +147,8 @@
         - name: Assert BizinGothic font file(Normal)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "BizinGothic(Normal) font file does not exist"
+            success_msg: "BizinGothic(Normal) font file exists"
         - name: Check BizinGothic font file(Discord)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/BizinGothic/BizinGothicDiscord-Regular.ttf
@@ -123,6 +156,8 @@
         - name: Assert BizinGothic font file(Discord)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "BizinGothic(Discord) font file does not exist"
+            success_msg: "BizinGothic(Discord) font file exists"
     # - name: Test BIZTER
     #   block:
     #     - name: Check BIZTER font file
@@ -141,6 +176,8 @@
         - name: Assert NerdFonts font file(SymbolsOnly)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "NerdFonts(SymbolsOnly) font file does not exist"
+            success_msg: "NerdFonts(SymbolsOnly) font file exists"
         - name: Check NerdFonts font file(SymbolsOnly mono)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/NerdFonts/SymbolsNerdFontMono-Regular.ttf
@@ -148,6 +185,8 @@
         - name: Assert NerdFonts font file(SymbolsOnly mono)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "NerdFonts(SymbolsOnly mono) font file does not exist"
+            success_msg: "NerdFonts(SymbolsOnly mono) font file exists"
         - name: Check NerdFonts font file(0xProto)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/NerdFonts/0xProtoNerdFont-Regular.ttf
@@ -155,6 +194,8 @@
         - name: Assert NerdFonts font file(0xProto)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "NerdFonts(0xProto) font file does not exist"
+            success_msg: "NerdFonts(0xProto) font file exists"
         - name: Check NerdFonts font file(0xProto mono)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/NerdFonts/0xProtoNerdFontMono-Regular.ttf
@@ -162,6 +203,8 @@
         - name: Assert NerdFonts font file(0xProto mono)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "NerdFonts(0xProto mono) font file does not exist"
+            success_msg: "NerdFonts(0xProto mono) font file exists"
     - name: Test Font Awesome
       block:
         - name: Check font file(Brands-Regular)
@@ -171,6 +214,8 @@
         - name: Assert font file(Brands-Regular)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Font Awesome(Brands-Regular) font file does not exist"
+            success_msg: "Font Awesome(Brands-Regular) font file exists"
         - name: Check font file(Free-Regular)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/FontAwesome/Font Awesome {{ font_awesome_version }} Free-Regular-400.otf
@@ -178,6 +223,8 @@
         - name: Assert font file(Free-Regular)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Font Awesome(Free-Regular) font file does not exist"
+            success_msg: "Font Awesome(Free-Regular) font file exists"
         - name: Check font file(Free-Solid)
           ansible.builtin.stat:
             path: /usr/local/share/fonts/FontAwesome/Font Awesome {{ font_awesome_version }} Free-Solid-900.otf
@@ -185,3 +232,5 @@
         - name: Assert font file(Free-Solid)
           ansible.builtin.assert:
             that: font_file_result.stat.exists
+            fail_msg: "Font Awesome(Free-Solid) font file does not exist"
+            success_msg: "Font Awesome(Free-Solid) font file exists"
